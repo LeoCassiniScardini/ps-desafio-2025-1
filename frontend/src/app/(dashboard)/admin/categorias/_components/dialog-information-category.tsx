@@ -10,7 +10,7 @@ import {
 } from '@/components/dialog'
 import FormFieldsCategory from './form-fields-category'
 import { categoryType } from '@/types/category'
-import SkeletonFormFieldsCategory from './skeleton-category'
+// import SkeletonFormFieldsCategory from './skeleton-category'
 import { api } from '@/services/api'
 import { useEffect, useState } from 'react'
 import { useToast } from '@/components/use-toast'
@@ -31,7 +31,7 @@ export function DialogInformationCategory({
 
   useEffect(() => {
     const requestData = async () => {
-      const { response } = null // requisicao para api
+      const { response } = await api<categoryType>('GET', `/categorias/${id}`) // requisicao para api
 
       if (response) {
         setCategory(response)
@@ -60,10 +60,10 @@ export function DialogInformationCategory({
           </DialogDescription>
         </DialogHeader>
         {category ? (
-          <FormFieldsCategory category={category} readOnly />
-        ) : (
-          <SkeletonFormFieldsCategory readOnly />
-        )}
+        <FormFieldsCategory category={category} readOnly />
+      ) : (
+        <p>Falha ao carregar</p>
+      )}
       </DialogContent>
     </Dialog>
   )

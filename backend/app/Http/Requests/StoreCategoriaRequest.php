@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VeiculoRequest extends FormRequest
+class StoreCategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,15 @@ class VeiculoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipo' => 'required|string',
+            'nome' => ['required', 'string']
         ];
     }
 
     public function messages(): array
     {
         return [
-            'tipo.string' => 'O campo categoria deve conter texto.',
+            'nome.required' => 'O campo categoria é obrigatório.',
+            'nome.string' => 'O campo categoria deve conter texto.',
         ];
     }
 }

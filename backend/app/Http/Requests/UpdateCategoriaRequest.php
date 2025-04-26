@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoriaRequest extends FormRequest
+class UpdateCategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,15 @@ class CategoriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'veiculo_id' => 'required|exists:veiculos,id',
-            'categoria' => 'required|string',
+            'nome' => ['sometimes', 'string']
         ];
     }
 
     public function messages(): array
     {
         return [
-            'veiculo_id.required' => 'O campo veículo é obrigatório.',
-            'veiculo_id.exists' => 'O veículo selecionado é inválido.',
-            'categoria.required' => 'O campo categoria é obrigatório.',
-            'categoria.string' => 'O campo categoria deve conter texto.',
+            'nome.sometimes' => 'O campo categoria é obrigatório.',
+            'nome.string' => 'O campo categoria deve conter texto.',
         ];
     }
 }

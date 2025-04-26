@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListaCarroRequest extends FormRequest
+class StoreListaCarroRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,12 @@ class ListaCarroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string',
-            'marca' => 'required|string',
-            'ano' => 'required|integer|min:1900|max:2025',
-            'imagem' => 'required|string',
-            'categoria_id' => 'required|exists:categorias,id',
-            'quantidade' => 'required|integer|min:0',
+            'nome' => ['required', 'string'],
+            'marca' => ['required', 'string'],
+            'ano' => ['required', 'integer', 'min:1900', 'max:2025'],
+            'imagem' => ['nullable', 'string'],
+            'categoria_id' => ['required', 'exists:categorias,id'],
+            'quantidade' => ['required', 'integer', 'min:0'],
         ];
     }
 
@@ -44,9 +44,6 @@ class ListaCarroRequest extends FormRequest
             'ano.integer' => 'O ano deve ser um número inteiro.',
             'ano.min' => 'O ano deve ser no mínimo 1900.',
             'ano.max' => 'O ano não pode ser maior que 2025.',
-
-            'imagem.required' => 'O campo imagem é obrigatório.',
-            'imagem.string' => 'O campo imagem deve ser um texto.',
 
             'categoria_id.required' => 'O campo categoria é obrigatório.',
             'categoria_id.exists' => 'A categoria informada é inválida.',

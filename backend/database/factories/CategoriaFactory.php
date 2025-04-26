@@ -18,8 +18,7 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'veiculo_id' => Veiculo::factory(),
-            'categoria' => $this->faker->randomElement(['SUV', 'Sedan', 'Esportiva', 'Utilitário']),
+            'nome' => $this->faker->randomElement(['SUV', 'Hatch', 'Sedan', 'Coupé']),
         ];
     }
 }

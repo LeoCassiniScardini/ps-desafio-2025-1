@@ -3,41 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
-use App\Http\Requests\CreateCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
+use App\Http\Requests\StoreCategoriaRequest;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class CategoriaController extends Controller
 {
+
+    protected $categoria;
+
+    public function __construct (Categoria $categorias){
+        $this->categoria = $categorias;
+    }
+
     public function index(): JsonResponse
     {
-        $categorias = Categoria::with('veiculo')->get();
-        return response()->json($categorias);
+        $categorias = $this->categoria->all();
+
+        return response()->json($categorias, Response::HTTP_OK);
     }
 
-    public function show($id): JsonResponse
+    public function store(StoreCategoriaRequest $request): JsonResponse
     {
-        $categoria = Categoria::with('veiculo')->findOrFail($id);
-        return response()->json($categoria);
-    }
+        $data = $request->validated();
 
-    public function store(CreateCategoriaRequest $request): JsonResponse
-    {
-        $categoria = Categoria::create($request->validated());
-        return response()->json($categoria, 201);
+        $categorias = $this->categoria->create($data);
+
+        return response()->json($categorias, Response::HTTP_CREATED);
     }
 
     public function update(UpdateCategoriaRequest $request, $id): JsonResponse
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->update($request->validated());
-        return response()->json($categoria);
+        $data = $request->validated();
+
+        $categorias = $this->categoria->findOrFail($id);
+
+        $categorias->update($data);
+
+        return response()->json($categorias, Response::HTTP_OK);
     }
 
     public function destroy($id): JsonResponse
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-        return response()->json(null, 204);
+        $categorias = $this->categoria->findOrFail($id);
+
+        $categorias->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

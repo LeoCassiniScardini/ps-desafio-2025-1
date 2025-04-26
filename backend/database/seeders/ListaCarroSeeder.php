@@ -14,7 +14,7 @@ class ListaCarroSeeder extends Seeder
             'marca' => 'Toyota',
             'ano' => 2020,
             'imagem' => 'corolla.jpg',
-            'categoria_id' => 2, // Sedan
+            'categoria_id' => 2, // Hatch
             'quantidade' => 5
         ]);
 

@@ -3,15 +3,36 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Support\Facades\Storage;
 
 class ListaCarro extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
-    protected $fillable = ['nome', 'marca', 'ano', 'imagem', 'categoria_id', 'quantidade'];
+    protected $fillable = [
+        'nome', 
+        'marca', 
+        'ano', 
+        'imagem', 
+        'categoria_id', 
+        'quantidade'
+    ];
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        self::deleted(function (ListaCarro $carro) {
+            try {
+                $image_name = explode('carros/', $carro['imagem']);
+                Storage::disk('public')->delete('carros/' . $image_name[1]);
+            } catch (Throwable) {
+            }
+        });
     }
 }

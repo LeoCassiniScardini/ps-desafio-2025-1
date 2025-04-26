@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/dashboard/table'
-
+import { api } from '@/services/api'
 import { categoryType } from '@/types/category'
 import { Button } from '@/components/button'
 import { LuInfo, LuPen, LuPlusCircle, LuTrash } from 'react-icons/lu'
@@ -18,7 +18,7 @@ import { DialogInformationCategory } from './dialog-information-category'
 import { DialogCreateCategory } from './dialog-create-category'
 
 export default async function ListCategory() {
-  const { response } = null // requisicao para api
+  const { response } = await api<categoryType[]>('GET', '/categorias') // requisicao para api
 
   if (!response) {
     return (
@@ -51,7 +51,7 @@ export default async function ListCategory() {
           <TableBody>
             {categories?.map((category: categoryType) => (
               <TableRow key={category.id}>
-                <TableCell>{category.name}</TableCell>
+                <TableCell>{category.nome}</TableCell>
                 <TableCell className="flex justify-end gap-2">
                   <DialogInformationCategory id={category.id}>
                     <Button variant="default-inverse" size="icon">

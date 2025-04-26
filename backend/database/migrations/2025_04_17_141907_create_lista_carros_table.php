@@ -12,16 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lista_carros', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('nome');
             $table->string('marca');
             $table->year('ano');
-            $table->string('imagem');
-            $table->unsignedBigInteger('categoria_id'); // chave estrangeira
+            $table->string('imagem')->nullable();
+            $table->foreignUuid('categoria_id')->constrained('categorias'); // chave estrangeira
             $table->integer('quantidade');
             $table->timestamps();
-        
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 
