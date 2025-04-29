@@ -18,6 +18,15 @@ class Categoria extends Model
 
     public function carros()
     {
-        return $this->hasMany(ListaCarro::class);
+        return $this->hasMany(ListaCarro::class, 'categoria_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        self::deleting(function (Categoria $categoria) {
+            $categoria->carros()->each(function ($carro) {
+                $carro->delete();
+            });
+        });
     }
 }

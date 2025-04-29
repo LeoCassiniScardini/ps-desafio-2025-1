@@ -25,7 +25,7 @@ class UpdateListaCarroRequest extends FormRequest
             'nome' => ['sometimes', 'string'],
             'marca' => ['sometimes', 'string'],
             'ano' => ['sometimes', 'integer', 'min:1900', 'max:2025'],
-            'imagem' => ['file'],
+            'imagem' => ['image', 'mimes:jpeg,png,jpg,webp'],
             'categoria_id' => ['sometimes', 'exists:categorias,id'],
             'quantidade' => ['sometimes', 'integer', 'min:0'],
         ];
@@ -44,6 +44,9 @@ class UpdateListaCarroRequest extends FormRequest
             'ano.integer' => 'O ano deve ser um número inteiro.',
             'ano.min' => 'O ano deve ser no mínimo 1900.',
             'ano.max' => 'O ano não pode ser maior que 2025.',
+            
+            'image.mimes' => 'O campo IMAGEM deve conter apenas jpeg, png, jpg e webp.',
+            'image.image' => 'O campo IMAGEM deve conter apenas imagens.',
 
             'categoria_id.sometimes' => 'O campo categoria é obrigatório.',
             'categoria_id.exists' => 'A categoria informada é inválida.',

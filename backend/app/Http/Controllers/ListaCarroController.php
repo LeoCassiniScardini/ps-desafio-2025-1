@@ -14,13 +14,13 @@ class ListaCarroController extends Controller
 
     protected $carro;
 
-    public function __construct (ListaCarro $carros){
-        $this->carro = $carros;
+    public function __construct (ListaCarro $carro){
+        $this->carro = $carro;
     }
 
     public function index(): JsonResponse
     {
-        $carros = $this->carro->all();
+        $carros = $this->carro->with('categoria')->get();
 
         return response()->json($carros, Response::HTTP_OK);
     }
@@ -30,43 +30,51 @@ class ListaCarroController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')){
-            $path = $request->file('image')->store('carros', 'public');
+            $path = $request->file('image')->store('carro', 'public');
             $data['image'] = url('storage/'.$path);
         }
 
-        $carros = $this->carro->create($data);
-        $id = $carros->id;
-        $carros = $this->carro->with('categoria')->findOrFail($id);
+        $carro = $this->carro->create($data);
+        $id = $carro->id;
+        $carro = $this->carro->with('categoria')->findOrFail($id);
 
-        return response()->json($carros, Response::HTTP_CREATED);
+        return response()->json($carro, Response::HTTP_CREATED);
     }
 
+    public function show($id): JsonResponse
+    {
+        $carro = $this->carro->with('categoria')->findOrFail($id);
+
+        return response()->json($carro, Response::HTTP_OK);
+    }
+    
     public function update(UpdateListaCarroRequest $request, $id): JsonResponse
     {
-        $carros = $this->carro->findOrFail($id);
+        $carro = $this->carro->with('categoria')->findOrFail($id);
 
         $data = $request->validated();
 
         if($request->hasFile('image')){
             try{
-                $image_name = explode('carros/', $carros['image']);
-                Storage::disk('public')->delete('carros/'.$image_name[1]);
+                $image_name = explode('carro/', $carro['image']);
+                Storage::disk('public')->delete('carro/'.$image_name[1]);
             } catch(Throwable){
-                $path = $request->file('image')->store('carros', 'public');
+            } finally {
+                $path = $request->file('image')->store('carro', 'public');
                 $data['image'] = url('storage/'.$path);
             }
         }
 
-        $carros->update($data);
+        $carro->update($data);
 
-        return response()->json($carros, Response::HTTP_OK);
+        return response()->json($carro, Response::HTTP_OK);
     }
 
     public function destroy($id): JsonResponse
     {
-        $carros = $this->carro->findOrFail($id);
+        $carro = $this->carro->findOrFail($id);
 
-        $carros->delete();
+        $carro->delete();
 
         return response()->json(['message' => 'Carro deletado com sucesso']);
     }
