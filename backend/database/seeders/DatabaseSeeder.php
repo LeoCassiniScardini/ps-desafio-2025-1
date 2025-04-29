@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(3)->create();
 
         $user = User::factory()->create([
             'name' => 'Test User',
@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->assignPermission('admin');
 
-        Veiculo::factory()->count(10)->create();
+        Veiculo::factory()->count(3)->create();
     }
 }

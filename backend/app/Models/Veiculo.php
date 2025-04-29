@@ -17,7 +17,7 @@ class Veiculo extends Model
         'ano', 
         'imagem', 
         'categoria_id', 
-        'quantidade'
+        'quantidade',
     ];
 
     public function categoria()
@@ -29,8 +29,8 @@ class Veiculo extends Model
     {
         self::deleted(function (Veiculo $veiculo) {
             try {
-                $image_name = explode('veiculos/', $veiculo['imagem']);
-                Storage::disk('public')->delete('veiculos/' . $image_name[1]);
+                $image_name = explode('veiculo/', $veiculo['imagem']);
+                Storage::disk('public')->delete('veiculo/' . $image_name[1]);
             } catch (Throwable) {
             }
         });

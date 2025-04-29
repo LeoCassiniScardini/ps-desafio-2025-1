@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateVeiculoRequest;
 use App\Http\Requests\StoreVeiculoRequest;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 
 class VeiculoController extends Controller
@@ -50,9 +53,9 @@ class VeiculoController extends Controller
     
     public function update(UpdateVeiculoRequest $request, $id): JsonResponse
     {
-        $veiculo = $this->veiculo->with('categoria')->findOrFail($id);
-
         $data = $request->validated();
+
+        $veiculo = $this->veiculo->with('categoria')->findOrFail($id);
 
         if($request->hasFile('imagem')){
             try{

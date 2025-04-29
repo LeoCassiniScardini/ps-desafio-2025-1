@@ -53,7 +53,7 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
 
-    const { response } = await api<vehicleType>('GET', `/veiculos/${id}`)
+    const { error } = await JSON.parse(await updateVehicle(newForm))
 
     if (error) {
       setError(error)
