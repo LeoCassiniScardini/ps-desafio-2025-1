@@ -19,7 +19,7 @@ import { DialogInformationVehicle } from './dialog-information-vehicle'
 import { DialogCreateVehicle } from './dialog-create-vehicle'
 
 export default async function ListVehicles() {
-  const { response } = null // requisicao para api
+  const { response } = await api<vehicleType[]>('GET', '/veiculos') // requisicao para api
 
   if (!response) {
     return (
@@ -46,7 +46,7 @@ export default async function ListVehicles() {
           <TableHeader>
             <TableRow>
               <TableHead>Imagem</TableHead>
-              <TableHead>Titulo</TableHead>
+              <TableHead>Nome</TableHead>
               <TableHead>Categoria</TableHead>
               <TableHead>Quantidade</TableHead>
               <TableHead className="text-right">Ações</TableHead>
@@ -56,11 +56,11 @@ export default async function ListVehicles() {
             {vehicles?.map((vehicle: vehicleType) => (
               <TableRow key={vehicle.id}>
                 <TableCell>
-                  <TabbleCellImage src={vehicle.image} />
+                  <TabbleCellImage src={vehicle.imagem} />
                 </TableCell>
-                <TableCell>{vehicle.title}</TableCell>
-                <TableCell>{vehicle.amount}</TableCell>
-                <TableCell>{vehicle.category.name}</TableCell>
+                <TableCell>{vehicle.nome}</TableCell>
+                <TableCell>{vehicle.categoria.nome}</TableCell>
+                <TableCell>{vehicle.quantidade}</TableCell>
                 <TableCell className="flex justify-end gap-2">
                   <DialogInformationVehicle id={vehicle.id}>
                     <Button variant="default-inverse" size="icon">

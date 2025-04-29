@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Facades\Storage;
 
-class ListaCarro extends Model
+class Veiculo extends Model
 {
     use HasFactory, HasUuids;
 
@@ -27,10 +27,10 @@ class ListaCarro extends Model
 
     protected static function booted()
     {
-        self::deleted(function (ListaCarro $carro) {
+        self::deleted(function (Veiculo $veiculo) {
             try {
-                $image_name = explode('carros/', $carro['imagem']);
-                Storage::disk('public')->delete('carros/' . $image_name[1]);
+                $image_name = explode('veiculos/', $veiculo['imagem']);
+                Storage::disk('public')->delete('veiculos/' . $image_name[1]);
             } catch (Throwable) {
             }
         });

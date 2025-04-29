@@ -29,7 +29,7 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
 
   useEffect(() => {
     const requestData = async () => {
-      const { response } = await api<vehicleType>('GET', `/vehicles/${id}`)
+      const { response } = await api<vehicleType>('GET', `/veiculos/${id}`)
 
       if (response) {
         setVehicle(response)
@@ -53,7 +53,7 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
 
-    const { error } = null // requisicao para api
+    const { response } = await api<vehicleType>('GET', `/veiculos/${id}`)
 
     if (error) {
       setError(error)

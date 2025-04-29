@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\ListaCarro;
+use App\Models\Veiculo;
 use Illuminate\Database\Seeder;
 
-class ListaCarroSeeder extends Seeder
+class VeiculoSeeder extends Seeder
 {
     public function run(): void
     {
-        ListaCarro::create([
+        Veiculo::create([
             'nome' => 'Corolla',
             'marca' => 'Toyota',
             'ano' => 2020,
@@ -18,7 +18,7 @@ class ListaCarroSeeder extends Seeder
             'quantidade' => 5
         ]);
 
-        ListaCarro::create([
+        Veiculo::create([
             'nome' => 'Hilux',
             'marca' => 'Toyota',
             'ano' => 2022,

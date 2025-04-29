@@ -6,9 +6,9 @@ use App\Models\Categoria;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ListaCarro>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Veiculo>
  */
-class ListaCarroFactory extends Factory
+class VeiculoFactory extends Factory
 {
     /**
      * Define the model's default state.
