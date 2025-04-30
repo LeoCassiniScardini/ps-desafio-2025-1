@@ -93,17 +93,17 @@ export default function FormFieldsVehicle({
           />
         </FormField>
         <FormField>
-          <Label htmlFor="categoria" required={!vehicle}>
+          <Label htmlFor="categoria_id" required={!vehicle}>
             Categoria
           </Label>
           <Input
-            name="categoria"
+            name="categoria_id"
             id="categoria"
             placeholder="ID da categoria"
             defaultValue={vehicle?.categoria?.id}
             disabled={pending}
             readOnly={readOnly}
-            error={error?.errors?.categoria}
+            error={error?.errors?.categoria_id}
           />
         </FormField>
         <FormField>

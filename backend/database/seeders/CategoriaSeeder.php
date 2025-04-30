@@ -9,9 +9,9 @@ class CategoriaSeeder extends Seeder
 {
     public function run(): void
     {
-        Categoria::create(['veiculo_id' => 1, 'nome' => 'SUV']);
-        Categoria::create(['veiculo_id' => 2, 'nome' => 'Hatch']);
-        Categoria::create(['veiculo_id' => 3, 'nome' => 'Sedan']);
-        Categoria::create(['veiculo_id' => 4, 'nome' => 'Coupé']);
+        Categoria::create(['nome' => 'SUV']);
+        Categoria::create(['nome' => 'Hatch']);
+        Categoria::create(['nome' => 'Sedan']);
+        Categoria::create(['nome' => 'Coupé']);
     }
 }

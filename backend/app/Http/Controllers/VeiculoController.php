@@ -37,6 +37,8 @@ class VeiculoController extends Controller
             $data['imagem'] = url('storage/'.$path);
         }
 
+        //dd($data);
+
         $veiculo = $this->veiculo->create($data);
         $id = $veiculo->id;
         $veiculo = $this->veiculo->with('categoria')->findOrFail($id);
