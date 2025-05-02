@@ -18,11 +18,12 @@ class VeiculoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->word(),
+            'nome' => $this->faker->firstName(),
             'marca' => $this->faker->company(),
-            'ano' => $this->faker->numberBetween(2000, 2025),
-            'categoria_id' => Categoria::factory(),
+            'ano' => $this->faker->numberBetween(1900, 2025),
+            'categoria_id' => Categoria::all()->random()->id,
             'quantidade' => $this->faker->numberBetween(1, 20),
+            'imagem' => 'https://picsum.photos/'.rand(150, 300),
         ];
     }
 }

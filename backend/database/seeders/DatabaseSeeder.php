@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,6 +23,13 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->assignPermission('admin');
 
-        Veiculo::factory()->count(3)->create();
+        $this->call([
+            CategoriaSeeder::class,
+            VeiculoSeeder::class,
+        ]);
+
+        // Categoria::factory()->count(3)->create();
+        // Veiculo::factory()->count(3)->create();
+        
     }
 }

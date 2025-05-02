@@ -30,8 +30,8 @@ class Veiculo extends Model
         self::deleted(function (Veiculo $veiculo) {
             try {
                 $image_name = explode('veiculo/', $veiculo['imagem']);
-                if (isset($image_parts[1])) {
-                    Storage::disk('public')->delete('veiculo/' . $image_parts[1]);
+                if (isset($image_name[1])) {
+                    Storage::disk('public')->delete('veiculo/'.$image_name[1]);
                 }
             } catch (Throwable) {
             }

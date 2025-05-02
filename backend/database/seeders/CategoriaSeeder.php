@@ -7,11 +7,21 @@ use Illuminate\Database\Seeder;
 
 class CategoriaSeeder extends Seeder
 {
+
+    private $categorias = [
+        'Carro',
+        'Moto',
+        'Caminhão',
+        'Avião',
+        'Barco',
+    ];
+
+
     public function run(): void
     {
-        Categoria::create(['nome' => 'SUV']);
-        Categoria::create(['nome' => 'Hatch']);
-        Categoria::create(['nome' => 'Sedan']);
-        Categoria::create(['nome' => 'Coupé']);
+        foreach($this->categorias as $categoria) {
+            Categoria::create(['nome' => $categoria]);
+        }
+
     }
 }
