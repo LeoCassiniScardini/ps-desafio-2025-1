@@ -8,4 +8,6 @@ export type vehicleType = {
     imagem: string
     categoria: categoryType
     quantidade: number
+    created_at: Date
+    updated_at: Date
 }

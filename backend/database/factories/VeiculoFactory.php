@@ -20,7 +20,7 @@ class VeiculoFactory extends Factory
         return [
             'nome' => $this->faker->firstName(),
             'marca' => $this->faker->company(),
-            'ano' => $this->faker->numberBetween(1900, 2025),
+            'ano' => $this->faker->numberBetween(1970, 2025),
             'categoria_id' => Categoria::all()->random()->id,
             'quantidade' => $this->faker->numberBetween(1, 20),
             'imagem' => 'https://picsum.photos/'.rand(150, 300),

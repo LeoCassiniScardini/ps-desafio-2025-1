@@ -24,7 +24,7 @@ class StoreVeiculoRequest extends FormRequest
         return [
             'nome' => ['required', 'string'],
             'marca' => ['required', 'string'],
-            'ano' => ['required', 'integer', 'min:1900', 'max:2025'],
+            'ano' => ['required', 'integer', 'min:1970', 'max:2025'],
             'imagem' => ['nullable', 'file', 'mimes:jpeg,png,jpg,webp'],
             'categoria_id' => ['required', 'exists:categorias,id'],
             'quantidade' => ['required', 'integer', 'min:0'],

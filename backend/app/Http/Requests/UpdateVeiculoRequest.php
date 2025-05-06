@@ -24,7 +24,7 @@ class UpdateVeiculoRequest extends FormRequest
         return [
             'nome' => ['sometimes', 'string'],
             'marca' => ['sometimes', 'string'],
-            'ano' => ['sometimes', 'integer', 'min:1900', 'max:2025'],
+            'ano' => ['sometimes', 'integer', 'min:1970', 'max:2025'],
             'imagem' => ['nullable', 'file', 'mimes:jpeg,png,jpg,webp'],
             'categoria_id' => ['sometimes', 'exists:categorias,id'],
             'quantidade' => ['sometimes', 'integer', 'min:0'],

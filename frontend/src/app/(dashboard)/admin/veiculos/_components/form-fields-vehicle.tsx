@@ -1,5 +1,13 @@
 'use client'
 
+import {
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  Select,
+} from '@/components/select'
 import { Button } from '@/components/button'
 import {
   FormFieldsGroup,
@@ -7,13 +15,15 @@ import {
   ImageForm,
   handleImageChange,
 } from '@/components/dashboard/form'
+import { api } from '@/services/api'
 import { DialogFooter } from '@/components/dialog'
 import { Input } from '@/components/input'
 import { Label } from '@/components/label'
 import { cn } from '@/lib/utils'
 import { ResponseErrorType } from '@/services/api'
+import { categoryType } from '@/types/category'
 import { vehicleType } from '@/types/vehicle'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 
 interface FormFieldsVehicleProps {
@@ -28,8 +38,27 @@ export default function FormFieldsVehicle({
   error,
 }: FormFieldsVehicleProps) {
   const { pending } = useFormStatus()
+  const [categories, setCategories] = useState<categoryType[]>()
   const [updateImage, setUpdateImage] = useState<string | undefined>()
 
+  const requestData = async () => {
+    try {
+      const response = await api('GET', '/categorias')
+      if (response.error){
+        console.log('Não foi possível carregar as categorias')
+      } else {
+        setCategories(response.response as categoryType[])
+      }
+    } catch (error) {
+      console.log('Erro ao carregar categorias')
+    }
+  }
+
+  useEffect(() => {
+    requestData()
+  }, [])
+
+  
   return (
     <>
       <FormFieldsGroup>
@@ -93,19 +122,31 @@ export default function FormFieldsVehicle({
           />
         </FormField>
         <FormField>
-          <Label htmlFor="categoria_id" required={!vehicle}>
-            Categoria
-          </Label>
-          <Input
+          <Select
+            disabled={pending || readOnly}
             name="categoria_id"
-            id="categoria"
-            placeholder="ID da categoria"
-            defaultValue={vehicle?.categoria?.id}
-            disabled={pending}
-            readOnly={readOnly}
-            error={error?.errors?.categoria_id}
-          />
+            defaultValue={vehicle?.categoria.id}
+          >
+            <Label>Categoria</Label>
+            <SelectTrigger>
+              <SelectValue placeholder="Selecione uma categoria" />
+            </SelectTrigger>
+            <SelectContent id="categoria_id">
+              <SelectGroup id="categoria_id">
+                {categories?.map((category: categoryType, index: number) => (
+                  <SelectItem value={category.id} key={index}>
+                    {category.nome}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </FormField>
+          {error?.errors?.categoria_id && (
+            <p className='text-destructive text-xs mt-2'>
+              {error?.errors?.categoria_id}
+            </p>
+          )}
         <FormField>
           <Label htmlFor="imagem" hidden={readOnly && !vehicle?.imagem}>
             Imagem

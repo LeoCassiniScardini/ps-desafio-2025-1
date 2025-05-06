@@ -10,10 +10,13 @@ class CategoriaSeeder extends Seeder
 
     private $categorias = [
         'Carro',
-        'Moto',
         'Caminhão',
+        'Motocicleta',
         'Avião',
-        'Barco',
+        'Navio',
+        'Bicicleta',
+        'Trator',
+        'Ônibus',
     ];
 
 
