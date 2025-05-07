@@ -33,5 +33,7 @@ Route::get('/', function () {
 
 Route::apiResource('/categorias', CategoriaController::class);
 Route::apiResource('/veiculos', VeiculoController::class);
+Route::post('/veiculos/{id}/comprar', [VeiculoController::class, 'comprar']);
+
 
 require __DIR__.'/auth.php';

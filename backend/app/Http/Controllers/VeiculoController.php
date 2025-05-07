@@ -83,4 +83,17 @@ class VeiculoController extends Controller
 
         return response()->json(['message' => 'veiculo deletado com sucesso']);
     }
+
+    public function comprar(Request $request, $id): JsonResponse
+    {
+
+    $quantidadeSolicitada = $request->input('quantidade');
+
+    $veiculo = $this->veiculo->findOrFail($id);
+
+    $veiculo->quantidade -= $quantidadeSolicitada;
+    $veiculo->save();
+
+    return response()->json($veiculo, Response::HTTP_OK);
+}
 }
