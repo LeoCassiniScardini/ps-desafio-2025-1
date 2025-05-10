@@ -23,7 +23,7 @@ class VeiculoFactory extends Factory
             'ano' => $this->faker->numberBetween(1970, 2025),
             'categoria_id' => Categoria::all()->random()->id,
             'quantidade' => $this->faker->numberBetween(1, 20),
-            'imagem' => 'https://picsum.photos/'.rand(150, 300),
+            'imagem' => 'https://picsum.photos/'.rand(300, 500),
         ];
     }
 }
