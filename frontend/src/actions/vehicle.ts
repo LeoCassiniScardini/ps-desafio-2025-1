@@ -34,3 +34,11 @@ export async function createVehicle(form: FormData) {
   
     return JSON.stringify(res)
   }
+
+  export async function comprarVeiculo(id: string, quantidade: number) {
+    const res = await api('POST', `/veiculos/${id}/comprar`, {
+      data: { quantidade },
+    })
+  
+    return JSON.stringify(res)
+  }

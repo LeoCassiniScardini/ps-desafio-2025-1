@@ -12,8 +12,8 @@ import Modal from '@/components/site/modal/modal'
 
 export default function Home() {
   const [vehicles, setVehicles] = useState<vehicleType[]>([])
+  const [open, setOpen] = useState<boolean>(false)
   const [selectedVehicle, setSelectedVehicle] = useState<vehicleType | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const requestData = async () => {
@@ -29,8 +29,6 @@ export default function Home() {
     requestData()
   }, [toast])
 
-  
-
   return (
     <>
       <div className={style.page}>
@@ -38,14 +36,17 @@ export default function Home() {
         <h1 className={style.title}>Veiculos</h1>
         <div className={style.wrapper}>
         {vehicles?.map((vehicle, index) => (
-            <Card key={index} vehicle={vehicle} onClick={() => {
-                setSelectedVehicle(vehicle)
-                setIsOpen(true)
+            <Card
+              key={index}
+              vehicle={vehicle}
+              onClick={() => {
+                setOpen(!open);
+                setSelectedVehicle(vehicle);
               }}
             />
           ))}
         </div>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)} vehicle={selectedVehicle} />
+        <Modal isOpen={open} setOpen={setOpen} vehicle={selectedVehicle} />
         <Footer/>
       </div>
     </>

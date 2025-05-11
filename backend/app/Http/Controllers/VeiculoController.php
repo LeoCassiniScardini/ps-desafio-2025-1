@@ -89,11 +89,23 @@ class VeiculoController extends Controller
 
     $quantidadeSolicitada = $request->input('quantidade');
 
+    if (is_null($quantidadeSolicitada) || $quantidadeSolicitada == 0) {
+        return response()->json(['message' => 'Quantidade não informada'], Response::HTTP_BAD_REQUEST);
+    }
+
+    if ($quantidadeSolicitada < 0) {
+        return response()->json(['message' => 'Seleciona uma quantidade válida'], Response::HTTP_BAD_REQUEST);
+    }
+
     $veiculo = $this->veiculo->findOrFail($id);
+
+    if ($quantidadeSolicitada > $veiculo->quantidade) {
+        return response()->json(['message' => 'Quantidade maior que o estoque'], Response::HTTP_BAD_REQUEST);
+    }
 
     $veiculo->quantidade -= $quantidadeSolicitada;
     $veiculo->save();
 
     return response()->json($veiculo, Response::HTTP_OK);
-}
+    }
 }

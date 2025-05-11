@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className={style.footer}>
       <div className={style.footer_content}>
         <p>© 2025 AMOTORS. Todos os direitos reservados.</p>
-        <p>Desenvolvido por: Léo Cassin Scardini</p>
+        <p>Desenvolvido para o PS da Adapti</p>
         <p>Contato: <a href="mailto:">example@mail.com</a></p>
         <div className={style.social_media}>
           <a href="/" className={style.social_links} id='instagram' title="Instagram">
