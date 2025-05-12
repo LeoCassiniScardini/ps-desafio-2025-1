@@ -10,9 +10,10 @@ interface Modal {
   isOpen: boolean;
   setOpen: (isOpen: boolean) => void;
   vehicle: vehicleType | null;
+  requestVehicles: () => void;
 };
 
-export default function Modal({ isOpen, setOpen, vehicle }: Modal) {
+export default function Modal({ isOpen, setOpen, vehicle, requestVehicles }: Modal) {
   if (isOpen || !vehicle) return null;
 
   const [quantidade, setQuantidade] = useState(0);
@@ -30,6 +31,7 @@ export default function Modal({ isOpen, setOpen, vehicle }: Modal) {
           title: 'Compra realizada com sucesso!',
         });
         setOpen(!isOpen);
+        requestVehicles();
       }
     } catch (error) {
       toast({

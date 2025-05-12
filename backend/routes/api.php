@@ -16,8 +16,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::middleware(['auth:sanctum', 'can:admin'])->group(function () {
     Route::apiResource('/users', UserController::class);
-    //Route::apiResource('/categorias', CategoriaController::class)->except(['index', 'show']);
-    //Route::apiResource('/veiculos', Veiculo::class)->except(['index', 'show']);
+    Route::apiResource('/categorias', CategoriaController::class)->except(['index', 'show']);
+    Route::apiResource('/veiculos', VeiculoController::class)->except(['index', 'show']);
 });
 
 
@@ -25,14 +25,14 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-//Route::get('/categorias', [CategoriaController::class, 'index']);
-//Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
-//Route::get('/veiculos', [Veiculo::class, 'index']);
-//Route::get('/veiculos/{id}', [Veiculo::class, 'show']);
+Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
+Route::get('/veiculos', [VeiculoController::class, 'index']);
+Route::get('/veiculos/{id}', [VeiculoController::class, 'show']);
 
 
-Route::apiResource('/categorias', CategoriaController::class);
-Route::apiResource('/veiculos', VeiculoController::class);
+//Route::apiResource('/categorias', CategoriaController::class);
+//Route::apiResource('/veiculos', VeiculoController::class);
 Route::post('/veiculos/{id}/comprar', [VeiculoController::class, 'comprar']);
 
 
