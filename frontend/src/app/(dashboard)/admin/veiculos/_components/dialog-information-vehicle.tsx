@@ -53,9 +53,9 @@ export function DialogInformationVehicle({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Informações do livro</DialogTitle>
+          <DialogTitle>Informações do veiculo</DialogTitle>
           <DialogDescription>
-            Visualize as informações detalhadas do livro abaixo.
+            Visualize as informações detalhadas do veiculo abaixo.
           </DialogDescription>
         </DialogHeader>
         <FormFieldsVehicle vehicle={vehicle} readOnly />

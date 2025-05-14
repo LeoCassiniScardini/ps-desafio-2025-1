@@ -18,7 +18,6 @@ export default function VehicleCard({vehicle, onClick}: vehicleProps) {
           <h3 className={style.marca}>{vehicle.marca}</h3>
           <p className={style.modelo}>Modelo: {vehicle.nome}</p>
           <p className={style.inf}>Ano: {vehicle.ano}</p>
-          <p className={style.inf}>Categoria: {vehicle.categoria.nome}</p>
           <p className={style.inf}>Quantidade: {vehicle.quantidade}</p>
         </div>
       </div>

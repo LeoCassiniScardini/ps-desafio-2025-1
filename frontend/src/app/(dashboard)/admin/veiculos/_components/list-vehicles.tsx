@@ -37,7 +37,7 @@ export default async function ListVehicles() {
         <DialogCreateVehicle>
           <Button size="sm">
             <LuPlusCircle />
-            Novo livro
+            Novo veiculo
           </Button>
         </DialogCreateVehicle>
       </DashboardContainer>
@@ -82,7 +82,7 @@ export default async function ListVehicles() {
             ))}
           </TableBody>
           {!vehicles.length && (
-            <TableCaption>Nenhum livro encontrado.</TableCaption>
+            <TableCaption>Nenhum veiculo encontrado.</TableCaption>
           )}
         </Table>
       </DashboardContainer>

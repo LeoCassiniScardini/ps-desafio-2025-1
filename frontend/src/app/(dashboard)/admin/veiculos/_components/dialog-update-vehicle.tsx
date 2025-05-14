@@ -36,7 +36,7 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
       } else {
         setVehicle(null)
         toast({
-          title: 'Livro  não encontrado!',
+          title: 'Veiculo  não encontrado!',
         })
         setOpen(false)
       }
@@ -58,11 +58,11 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
     if (error) {
       setError(error)
       toast({
-        title: 'Não foi possível editar o livro!',
+        title: 'Não foi possível editar o Veiculo!',
       })
     } else {
       toast({
-        title: 'Livro editado com sucesso!',
+        title: 'Veiculo editado com sucesso!',
       })
       setOpen(false)
     }
@@ -73,9 +73,9 @@ export function DialogUpdateVehicle({ id, children }: DialogUpdateVehicleProps) 
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Editar livro</DialogTitle>
+          <DialogTitle>Editar Veiculo</DialogTitle>
           <DialogDescription>
-            Atualize as informações do livro abaixo e clique em
+            Atualize as informações do Veiculo abaixo e clique em
             &quot;Salvar&quot; para aplicar as alterações.
           </DialogDescription>
         </DialogHeader>
