@@ -84,8 +84,8 @@ export default function Page() {
               />
             ))}
           </div>
+          </div>
           <Modal isOpen={open} setOpen={setOpen} vehicle={selectedVehicle} requestVehicles={requestVehicles} />
-        </div>
         <Footer/>
       </div>
     </>
