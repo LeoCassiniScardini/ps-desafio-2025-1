@@ -4,6 +4,7 @@ import { useState } from 'react'
 import style from './categoryNavbar.module.css'
 import { categoryType } from '@/types/category'
 
+
 type Props = {
   categories: categoryType[]
   selectedCategory: string
@@ -19,6 +20,13 @@ export default function CategoryNavbar({
   busca,
   setBusca
 }: Props) {
+
+  const [activeButton, setActiveButton] = useState('Todos');
+
+  const handleButton = (buttonId: string) => {
+    setActiveButton(buttonId);
+  };
+
   return (
     <div className={style.navbar}>
       <div className={style.buttons}>
@@ -26,20 +34,20 @@ export default function CategoryNavbar({
         type="text"
         value={busca}
         onChange={(e) => setBusca(e.target.value)}
-        placeholder="Digite sua busca"
+        placeholder={"Digite sua busca"}
         className={style.input}
       />
         <button
-          className={style.category}
-          onClick={() => setSelectedCategory('Todos')}
+          onClick={() => { setSelectedCategory('Todos'); handleButton('Todos'); }}
+          className={activeButton === 'Todos' ? style.categoryActive: style.category}
         >
           Todos
         </button>
         {categories.map((category) => (
           <button
             key={category.id}
-            className={style.category}
-            onClick={() => setSelectedCategory(category.nome)}
+            onClick={() => { setSelectedCategory(category.nome); handleButton(category.nome); }}
+            className={activeButton === category.nome ? style.categoryActive: style.category}
           >
             {category.nome}
           </button>
