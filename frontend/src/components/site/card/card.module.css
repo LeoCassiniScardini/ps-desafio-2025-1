@@ -27,6 +27,9 @@
 .infContainer {
   padding: 16px;
   text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 2px 0;
 }
 
 .marca {
@@ -34,12 +37,6 @@
   font-weight: 600;
   color: #a40000;
   margin-bottom: 8px;
-}
-
-.infContainer {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 2px 0;
 }
 
 .modelo {
@@ -75,6 +72,7 @@
     width: 60%;
     padding: 12px;
     text-align: left;
+    font-size: 14px;
   }
 
   .marca {
@@ -83,9 +81,5 @@
 
   .modelo {
     font-size: 15px;
-  }
-
-  .infContainer {
-    font-size: 14px;
   }
 }

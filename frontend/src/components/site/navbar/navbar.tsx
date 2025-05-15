@@ -32,6 +32,7 @@ export default function Navbar({logo}: NavbarProps) {
 
   return (
     <nav className={style.navbar}>
+      <div className={style.center}>
       <div className={style.navbar_nav}>
         <a href="/">
           <img src={logo} alt="Logo" className={style.logo} />
@@ -46,6 +47,7 @@ export default function Navbar({logo}: NavbarProps) {
           {isAuth ? <RiAdminLine />: <LiaUserSlashSolid />}
         </a></li>
       </ul>
+      </div>
     </nav>
   )
 }

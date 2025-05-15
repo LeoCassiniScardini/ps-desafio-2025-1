@@ -1,8 +1,4 @@
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #a14242;
     color: white;
     padding: 16px 32px;
@@ -12,6 +8,15 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
+  }
+
+  .center {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .links {
@@ -38,12 +43,6 @@
 
 
 @media screen and (max-width: 800px) {
-    .navbar {
-      justify-content: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  
     .logo {
       position: inherit;
       margin: 0rem 2rem;
@@ -53,6 +52,12 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+    }
+
+    .center {
+      justify-content: center;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
     .navbar_nav{

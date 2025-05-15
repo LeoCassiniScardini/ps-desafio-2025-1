@@ -22,6 +22,13 @@ export default function CategoryNavbar({
   return (
     <div className={style.navbar}>
       <div className={style.buttons}>
+        <input
+        type="text"
+        value={busca}
+        onChange={(e) => setBusca(e.target.value)}
+        placeholder="Digite sua busca"
+        className={style.input}
+      />
         <button
           className={style.category}
           onClick={() => setSelectedCategory('Todos')}
@@ -38,13 +45,7 @@ export default function CategoryNavbar({
           </button>
         ))}
       </div>
-      <input
-        type="text"
-        value={busca}
-        onChange={(e) => setBusca(e.target.value)}
-        placeholder="Digite sua busca"
-        className={style.input}
-      />
+      
     </div>
   )
 }

@@ -63,27 +63,29 @@ export default function Page() {
     <>
       <div className={style.page}>
         <Navbar logo="./site/amotors.png" />
-        <CategoryNavbar
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          busca={busca}
-          setBusca={setBusca}
-        />
-        <h1 className={style.title}>Veiculos</h1>
-        <div className={style.wrapper}>
-        {vehicleFiltered?.map((vehicle, index) => (
-            <Card
-              key={index}
-              vehicle={vehicle}
-              onClick={() => {
-                setOpen(!open);
-                setSelectedVehicle(vehicle);
-              }}
-            />
-          ))}
+        <div className={style.center}>
+          <CategoryNavbar
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            busca={busca}
+            setBusca={setBusca}
+          />
+          <h1 className={style.title}>Veiculos</h1>
+          <div className={style.wrapper}>
+          {vehicleFiltered?.map((vehicle, index) => (
+              <Card
+                key={index}
+                vehicle={vehicle}
+                onClick={() => {
+                  setOpen(!open);
+                  setSelectedVehicle(vehicle);
+                }}
+              />
+            ))}
+          </div>
+          <Modal isOpen={open} setOpen={setOpen} vehicle={selectedVehicle} requestVehicles={requestVehicles} />
         </div>
-        <Modal isOpen={open} setOpen={setOpen} vehicle={selectedVehicle} requestVehicles={requestVehicles} />
         <Footer/>
       </div>
     </>
